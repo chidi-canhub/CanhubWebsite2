@@ -14,24 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
-  title: {
-    default: "Canhub | Strategic digital experiences",
-    template: "%s | Canhub",
-  },
+  title: "Canhub Software | Software Engineering & Digital Solutions",
   description:
-    "Canhub builds strategic digital experiences for ambitious teams that need clarity, momentum, and a more effective online presence.",
-  alternates: {
-    canonical: "/",
-  },
+    "Canhub Software provides bespoke software development, Salesforce and CRM engineering, banking technology, integrations, and cloud and data solutions.",
   openGraph: {
-    title: "Canhub | Strategic digital experiences",
+    title: "Canhub Software | Software Engineering & Digital Solutions",
     description:
-      "Canhub builds strategic digital experiences for ambitious teams that need clarity, momentum, and a more effective online presence.",
-    url: "/",
-    siteName: "Canhub",
+      "Canhub Software provides bespoke software development, Salesforce and CRM engineering, banking technology, integrations, and cloud and data solutions.",
+    siteName: "Canhub Software",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Canhub Software | Software Engineering & Digital Solutions",
+    description:
+      "Canhub Software provides bespoke software development, Salesforce and CRM engineering, banking technology, integrations, and cloud and data solutions.",
   },
 };
 

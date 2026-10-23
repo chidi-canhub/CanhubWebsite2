@@ -1,63 +1,155 @@
 export const siteConfig = {
   name: "Canhub",
+  companyName: "Canhub Software",
+  tagline: "Software engineering and digital solutions",
   meta: {
-    title: "Canhub | Strategic digital experiences",
+    title: "Canhub Software | Software Engineering & Digital Solutions",
     description:
-      "Canhub builds strategic digital experiences for ambitious teams that need clarity, momentum, and a more effective online presence.",
+      "Canhub Software provides bespoke software development, Salesforce and CRM engineering, banking technology, integrations, and cloud and data solutions.",
+  },
+  contact: {
+    email: "hello@canhub.com",
+    subject: "Project Enquiry",
   },
   nav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "#services" },
-    { label: "Approach", href: "#approach" },
+    { label: "Industries", href: "#industries" },
+    { label: "Our Work", href: "#work" },
+    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],
   homepage: {
-    eyebrow: "Strategy-led digital partner",
-    title: "Strategic digital experiences",
+    eyebrow: "Software engineering consultancy",
+    title: "Software engineered for what's next.",
     description:
-      "We help teams shape clear propositions, build usable digital systems, and turn complex ideas into confident customer experiences.",
+      "Canhub designs, builds and integrates digital solutions that help businesses solve complex challenges, streamline operations and grow with confidence.",
     primaryCta: {
-      label: "Book a discovery call",
+      label: "Discuss Your Project",
       href: "#contact",
     },
     secondaryCta: {
-      label: "View services",
+      label: "Explore Our Services",
       href: "#services",
     },
     highlights: [
-      "Brand clarity",
-      "Design systems",
       "Digital strategy",
+      "Enterprise systems",
+      "Platform integration",
+      "Cloud and data",
     ],
     services: [
       {
-        title: "Brand and positioning",
+        title: "Web & Application Development",
         description:
-          "Clarify what you stand for, who you serve, and how your offer should be expressed across digital touchpoints.",
+          "Modern web experiences and bespoke business applications designed around usability, resilience and growth.",
+        href: "#contact",
       },
       {
-        title: "Website design",
+        title: "Salesforce & CRM Engineering",
         description:
-          "Create thoughtful, responsive interfaces that communicate value clearly and support conversion without noise.",
+          "Sales and service platforms tailored to process complexity, data quality and team productivity.",
+        href: "#contact",
       },
       {
-        title: "Product and platform thinking",
+        title: "Banking & nCino Solutions",
         description:
-          "Turn complex ideas into usable digital experiences with a strong plan, clean structure, and practical delivery focus.",
+          "Bespoke banking technology support designed for regulated workflows, operational clarity and digital change.",
+        href: "#contact",
+      },
+      {
+        title: "Enterprise Integrations & APIs",
+        description:
+          "Connected systems that streamline workflows, join fragmented data sets and reduce manual business friction.",
+        href: "#contact",
+      },
+      {
+        title: "Cloud & Data Engineering",
+        description:
+          "Scalable cloud foundations and data services that improve reliability, insight and operational performance.",
+        href: "#contact",
+      },
+      {
+        title: "Technical Consulting & Support",
+        description:
+          "Practical engineering guidance and hands-on support to help teams navigate delivery, risk and change.",
+        href: "#contact",
       },
     ],
-    approach: [
+    valueProps: [
+      {
+        title: "Engineering-led problem solving",
+        description:
+          "We approach each challenge through technology, process and operational reality to design the right solution, not just a quick fix.",
+      },
+      {
+        title: "Business context matters",
+        description:
+          "We focus on the way teams work, where operational friction sits and what the solution needs to enable long-term scalability.",
+      },
+      {
+        title: "Complex platforms, handled clearly",
+        description:
+          "From integrations to enterprise tools, we work with complex digital environments while keeping delivery understandable and maintainable.",
+      },
+      {
+        title: "Transparent collaboration",
+        description:
+          "We keep stakeholders informed, aligned and confident through each stage of delivery and ongoing support.",
+      },
+    ],
+    industries: [
+      {
+        title: "Financial Services",
+        description:
+          "Technology strategy and platform support for institutions navigating compliance, customer experience and operational change.",
+      },
+      {
+        title: "Insurance",
+        description:
+          "Solutions that support underwriting, policy workflows, customer journeys and more connected operational processes.",
+      },
+      {
+        title: "Healthcare & Life Sciences",
+        description:
+          "Digital systems that improve process visibility, partner coordination and operational reliability in complex environments.",
+      },
+      {
+        title: "Growing Businesses",
+        description:
+          "Flexible technology foundations that help scaling businesses streamline operations and prepare for the next stage of growth.",
+      },
+    ],
+    work: [
+      {
+        title: "Amazing Grace Biomedical Laboratory",
+        description:
+          "Draft project summary to be confirmed. This placeholder content is included only to support the homepage structure until accurate case study information is approved.",
+        tag: "Draft case study",
+      },
+      {
+        title: "ESH Services",
+        description:
+          "Draft project summary to be confirmed. This placeholder content is included only to support the homepage structure until accurate case study information is approved.",
+        tag: "Draft case study",
+      },
+    ],
+    process: [
       {
         title: "Discover",
-        description: "We establish goals, constraints, audience needs, and the practical realities behind the work.",
+        description: "Understand the business problem, constraints and opportunities before choosing the right path forward.",
       },
       {
         title: "Design",
-        description: "We translate insights into clear experience direction, visual systems, and content structure.",
+        description: "Shape a practical solution based on architecture, workflows, stakeholder needs and maintenance realities.",
       },
       {
-        title: "Deliver",
-        description: "We turn the direction into a usable, maintainable digital foundation ready for the next phase of growth.",
+        title: "Build",
+        description: "Engineer and validate the implementation so the platform is resilient, usable and ready to evolve.",
+      },
+      {
+        title: "Support",
+        description: "Maintain momentum with ongoing improvements, operational guidance and thoughtful technical support.",
       },
     ],
   },
