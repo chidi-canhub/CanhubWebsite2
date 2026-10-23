@@ -25,6 +25,11 @@ export async function POST(request: Request) {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
     const rateLimit = await checkRateLimit(ip);
     if (rateLimit === null) {
+      console.warn("[contact-form] rate limiter unavailable: missing Upstash config or Redis error", {
+        hasUpstashUrl: Boolean(process.env.UPSTASH_REDIS_REST_URL),
+        hasUpstashToken: Boolean(process.env.UPSTASH_REDIS_REST_TOKEN),
+        ipHash: ip === "unknown" ? "unknown" : ip.slice(0, 6),
+      });
       return NextResponse.json(
         {
           success: false,
@@ -69,6 +74,11 @@ export async function POST(request: Request) {
 
     const emailConfigMissing = !process.env.RESEND_API_KEY || !process.env.CONTACT_EMAIL_TO || !process.env.CONTACT_EMAIL_FROM;
     if (emailConfigMissing) {
+      console.warn("[contact-form] email delivery unavailable: required env vars are missing", {
+        hasResendApiKey: Boolean(process.env.RESEND_API_KEY),
+        hasContactEmailTo: Boolean(process.env.CONTACT_EMAIL_TO),
+        hasContactEmailFrom: Boolean(process.env.CONTACT_EMAIL_FROM),
+      });
       return NextResponse.json(
         {
           success: false,
@@ -90,6 +100,9 @@ export async function POST(request: Request) {
     });
 
     if (!emailResult.ok) {
+      console.error("[contact-form] Resend email send failed", {
+        error: emailResult.error,
+      });
       return NextResponse.json(
         {
           success: false,
