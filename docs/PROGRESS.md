@@ -30,6 +30,17 @@ Status: Complete, pending a live visual review in a real browser (see limitation
 
 - No browser, screenshot or device tooling was available. Desktop, tablet and mobile layouts, rendered contrast, focus rings, and the real mobile menu were reviewed from source only. Contrast values were estimated from the design tokens, not measured on rendered output. The deployed site could not be inspected from this environment; the review was of the repository source.
 
+## Milestone 3 status
+
+Status: Complete.
+
+- Added a dedicated service overview route at `/services` with six service cards, a value narrative, combined capability explanation and strong contact CTAs.
+- Created six service detail pages for web application development, Salesforce & CRM engineering, banking & nCino solutions, enterprise integrations & APIs, cloud & data engineering, and technical consulting & support.
+- Centralised service copy in `lib/services.ts` and reused the same structure for route metadata, related service links and consistent page composition.
+- Updated the homepage and site navigation to link to the real service routes and keep the service section discoverable.
+- Added page-level metadata for the overview and each service detail page with clear headings and service-specific copy.
+- Implemented the shared `ServiceDetailLayout` pattern so the service pages remain consistent while preserving differentiated business narratives.
+
 ## Completed
 
 - Next.js app initialized with TypeScript, Tailwind CSS, and App Router.
@@ -44,12 +55,13 @@ Status: Complete, pending a live visual review in a real browser (see limitation
 - Documentation created for project specification, implementation plan, and progress tracking.
 - JEST + Testing Library smoke tests configured and passing.
 - Local development instructions documented in the README.
+- Service architecture and six service detail pages implemented as part of Milestone 3.
 
 ## Validation performed
 
 - ESLint validation passed.
 - TypeScript compile check passed.
-- Homepage smoke tests passed.
+- Jest smoke tests passed (including the new service-page checks).
 - Production build passed.
 
 ## Notes

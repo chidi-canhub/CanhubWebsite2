@@ -171,6 +171,16 @@ Mitigations:
 - Validate the shell before implementing more pages
 - Maintain conservative brand language until approved content arrives
 
-## 11. Exit criteria for Milestone 3
+## 11. Milestone 3 scope
 
-The project can move to Milestone 3 when the homepage is stable, fully responsive, documented, and all checks pass without blocking issues. Content placeholders should be clearly flagged as provisional and should not be treated as final client proof.
+Milestone 3 focuses on completing the service experience and deepening the site narrative without inventing unverified claims:
+
+- Add the services overview route and all six service detail pages.
+- Define a shared service content model in `lib/services.ts` to keep copy structured and reusable.
+- Keep the app shell, styling system and navigation patterns consistent with the existing homepage.
+- Use service-specific business copy, delivery narratives and supporting capability lists without repeating the same marketing language across every page.
+- Link each service back to relevant complementary services and maintain a clear contact CTA path.
+
+## 12. Exit criteria for Milestone 3
+
+The project can move beyond Milestone 3 when the service experience is complete, the pages are responsive and accessible, metadata is defined, and linting, typechecking, tests and production build all pass without blocking issues.

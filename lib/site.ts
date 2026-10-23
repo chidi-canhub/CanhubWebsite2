@@ -17,7 +17,7 @@ export function getContactHref(): string {
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "#services" },
+  { label: "Services", href: "/services" },
   { label: "Industries", href: "#industries" },
   { label: "Our Work", href: "#work" },
   { label: "About", href: "#about" },
@@ -60,7 +60,7 @@ export const siteConfig = {
     },
     secondaryCta: {
       label: "Explore Our Services",
-      href: "#services",
+      href: "/services",
     },
     highlights: [
       "Digital strategy",
@@ -73,37 +73,37 @@ export const siteConfig = {
         title: "Web & Application Development",
         description:
           "Modern web experiences and bespoke business applications designed around usability, resilience and growth.",
-        href: "#contact",
+        href: "/services/web-application-development",
       },
       {
         title: "Salesforce & CRM Engineering",
         description:
           "Sales and service platforms tailored to process complexity, data quality and team productivity.",
-        href: "#contact",
+        href: "/services/salesforce-crm",
       },
       {
         title: "Banking & nCino Solutions",
         description:
           "Bespoke banking technology support designed for regulated workflows, operational clarity and digital change.",
-        href: "#contact",
+        href: "/services/banking-ncino",
       },
       {
         title: "Enterprise Integrations & APIs",
         description:
           "Connected systems that streamline workflows, join fragmented data sets and reduce manual business friction.",
-        href: "#contact",
+        href: "/services/enterprise-integrations",
       },
       {
         title: "Cloud & Data Engineering",
         description:
           "Scalable cloud foundations and data services that improve reliability, insight and operational performance.",
-        href: "#contact",
+        href: "/services/cloud-data-engineering",
       },
       {
         title: "Technical Consulting & Support",
         description:
           "Practical engineering guidance and hands-on support to help teams navigate delivery, risk and change.",
-        href: "#contact",
+        href: "/services/technical-consulting",
       },
     ],
     valueProps: [
