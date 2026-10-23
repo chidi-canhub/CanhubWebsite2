@@ -58,7 +58,7 @@ describe("contact api", () => {
         email: "jane@example.com",
         company: "Example Ltd",
         enquiryType: "Web & Application Development",
-        message: "We need a new project website and CRM integration.",
+        message: "We need a 12", // 10+ chars after trimming
         phone: "+44 7700 900123",
         budget: "£12k - £25k",
         timeframe: "Within 1-2 months",
@@ -75,6 +75,22 @@ describe("contact api", () => {
         replyTo: "jane@example.com",
       }),
     );
+  });
+
+  it("rejects message content shorter than 10 characters after trimming", async () => {
+    const response = await POST(
+      makeRequest({
+        name: "Jane Smith",
+        email: "jane@example.com",
+        enquiryType: "General Enquiry",
+        message: "  nine  ",
+      }, { "content-type": "application/json" }),
+    );
+
+    expect(response.status).toBe(400);
+    const body = await response.json();
+    expect(body.success).toBe(false);
+    expect(body.message).toContain("Please enter at least 10 characters.");
   });
 
   it("rejects missing required fields", async () => {

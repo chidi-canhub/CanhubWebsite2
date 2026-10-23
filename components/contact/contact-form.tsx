@@ -205,8 +205,8 @@ export function ContactForm() {
             value={values.message}
             onChange={handleChange}
             required
-            minLength={20}
-            maxLength={2000}
+            minLength={10}
+            maxLength={5000}
             rows={6}
             aria-invalid={Boolean(errors.message)}
             aria-describedby={errors.message ? "message-error" : undefined}

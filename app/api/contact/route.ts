@@ -52,10 +52,14 @@ export async function POST(request: Request) {
     const result = contactFormSchema.safeParse(body);
     if (!result.success) {
       const flattenedErrors = result.error.flatten().fieldErrors;
+      const firstErrorMessage = Object.values(flattenedErrors)
+        .flatMap((messages) => messages ?? [])
+        .find((message) => Boolean(message));
+
       return NextResponse.json(
         {
           success: false,
-          message: "Please review the highlighted fields and try again.",
+          message: firstErrorMessage ?? "Please review the highlighted fields and try again.",
           errors: Object.fromEntries(
             Object.entries(flattenedErrors).map(([key, messages]) => [key, messages?.[0] ?? "Invalid value"]),
           ),

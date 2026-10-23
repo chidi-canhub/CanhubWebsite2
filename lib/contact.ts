@@ -27,7 +27,11 @@ export const contactFormSchema = z
     company: optionalText(120),
     phone: optionalText(40),
     enquiryType: z.enum(enquiryTypes),
-    message: z.string().trim().min(20).max(2000),
+    message: z
+      .string()
+      .trim()
+      .min(10, "Please enter at least 10 characters.")
+      .max(5000, "Please keep your message under 5000 characters."),
     budget: optionalText(80),
     timeframe: optionalText(80),
     website: optionalText(255),
@@ -48,7 +52,7 @@ export const contactFieldConfig = {
   company: { max: 120, label: "Company or organisation" },
   phone: { max: 40, label: "Telephone number" },
   enquiryType: { label: "Enquiry type" },
-  message: { max: 2000, label: "Message" },
+  message: { max: 5000, label: "Message" },
   budget: { max: 80, label: "Estimated project budget" },
   timeframe: { max: 80, label: "Preferred project timeframe" },
 } as const;
