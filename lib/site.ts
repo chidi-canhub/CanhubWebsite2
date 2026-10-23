@@ -25,8 +25,8 @@ const navItems = [
 ];
 
 /**
- * Navigation items whose destinations exist on the page. "Our Work" is only
- * included when at least one approved project is available to render.
+ * Navigation items whose destinations exist on the page. The work section is
+ * only included when there is an approved project to feature.
  */
 export function getNavItems(list: readonly Project[] = projects) {
   const hasPublishedWork = getPublishedProjects(list).length > 0;
