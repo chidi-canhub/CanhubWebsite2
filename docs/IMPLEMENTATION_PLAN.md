@@ -36,6 +36,14 @@ Milestone 2 adds the premium homepage experience required for launch preparation
 - process section and final CTA
 - complete footer and homepage metadata refinements
 
+## 3a. Scope for Milestone 2.1 (quality refinement)
+
+- Public pages must not show draft labels, placeholder copy or internal development language.
+- Portfolio entries live in `lib/projects.ts` and render only when `status` is `approved`; the Our Work section and navigation link are derived from that data.
+- Illustrative numeric metrics are not permitted; the hero visual uses architecture layer labels only.
+- The business contact email is defined once in `siteConfig.contact` (`lib/site.ts`) and is never hard-coded in components.
+- Every in-page anchor must resolve to an existing section (enforced by tests).
+
 ## 4. Implementation sequence
 
 ### Phase 1 — Project setup

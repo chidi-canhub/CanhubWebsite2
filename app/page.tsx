@@ -1,11 +1,17 @@
+import { ArchitectureDiagram } from "@/components/home/architecture-diagram";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { WorkSection } from "@/components/home/work-section";
 import { ButtonLink } from "@/components/ui/button-link";
 import { PageShell } from "@/components/ui/page-shell";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { siteConfig } from "@/lib/site";
+import { getPublishedProjects } from "@/lib/projects";
+import { getContactHref, siteConfig } from "@/lib/site";
 
 export default function HomePage() {
+  const publishedProjects = getPublishedProjects();
+  const contactHref = getContactHref();
+
   return (
     <div className="flex min-h-screen flex-col bg-[var(--brand-bg)] text-[var(--brand-ink)]">
       <SiteHeader />
@@ -47,59 +53,7 @@ export default function HomePage() {
             </div>
 
             <div className="relative mx-auto w-full max-w-xl">
-              <div className="rounded-[2rem] border border-[var(--brand-border)] bg-[rgba(10,20,30,0.98)] p-5 text-white shadow-[0_28px_80px_rgba(15,23,42,0.22)] sm:p-7">
-                <div className="mb-6 flex items-center justify-between">
-                  <div>
-                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[rgba(255,255,255,0.72)]">
-                      Delivery blueprint
-                    </p>
-                    <p className="mt-2 text-xl font-semibold">Connected systems</p>
-                  </div>
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm font-semibold text-[var(--brand-accent-soft)]">
-                    C
-                  </span>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-[0.18em] text-[rgba(255,255,255,0.72)]">
-                      Platform
-                    </p>
-                    <p className="mt-3 text-lg font-semibold">Strategy</p>
-                    <p className="mt-2 text-sm leading-6 text-[rgba(255,255,255,0.75)]">
-                      Architecture that keeps growth and operational complexity in balance.
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-[var(--brand-accent)]/90 p-4">
-                    <p className="text-xs uppercase tracking-[0.18em] text-[rgba(255,255,255,0.78)]">
-                      Delivery
-                    </p>
-                    <p className="mt-3 text-lg font-semibold">Engineering</p>
-                    <p className="mt-2 text-sm leading-6 text-white/80">
-                      Clear implementation plans and maintainable systems from day one.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div className="flex items-center justify-between text-sm text-[rgba(255,255,255,0.72)]">
-                    <span>System map</span>
-                    <span>Live</span>
-                  </div>
-                  <div className="mt-5 space-y-3">
-                    {[
-                      { label: "CRM", value: "96%" },
-                      { label: "Integrations", value: "24/7" },
-                      { label: "Ops visibility", value: "100%" },
-                    ].map((item) => (
-                      <div key={item.label} className="flex items-center justify-between">
-                        <span className="text-sm text-[rgba(255,255,255,0.8)]">{item.label}</span>
-                        <span className="text-sm font-semibold text-white">{item.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <ArchitectureDiagram />
             </div>
           </PageShell>
         </section>
@@ -183,30 +137,7 @@ export default function HomePage() {
           </PageShell>
         </section>
 
-        <section id="work" className="bg-[var(--brand-bg)]">
-          <PageShell className="py-16 sm:py-20">
-            <SectionHeading
-              label="Our Work"
-              title="A portfolio framework built for verified project stories"
-              description="The case study list below is intentionally draft-only and clearly marked until approved content and publication permission are confirmed."
-            />
-
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
-              {siteConfig.homepage.work.map((project) => (
-                <article
-                  key={project.title}
-                  className="rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)]"
-                >
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-accent)]">
-                    {project.tag}
-                  </p>
-                  <h3 className="mt-4 text-2xl font-semibold text-[var(--brand-ink)]">{project.title}</h3>
-                  <p className="mt-3 text-base leading-7 text-[var(--brand-muted)]">{project.description}</p>
-                </article>
-              ))}
-            </div>
-          </PageShell>
-        </section>
+        <WorkSection projects={publishedProjects} />
 
         <section id="process" className="bg-[var(--brand-surface)]">
           <PageShell className="py-16 sm:py-20">
@@ -235,7 +166,7 @@ export default function HomePage() {
 
         <section id="contact" className="bg-[var(--brand-bg)]">
           <PageShell className="py-16 sm:py-20">
-            <div className="rounded-[2rem] border border-[var(--brand-border)] bg-[var(--brand-ink)] px-6 py-10 text-white shadow-[0_30px_60px_rgba(15,23,42,0.12)] sm:px-8 lg:px-10">
+            <div className="surface-dark rounded-[2rem] border border-[var(--brand-border)] bg-[var(--brand-ink)] px-6 py-10 text-white shadow-[0_30px_60px_rgba(15,23,42,0.12)] sm:px-8 lg:px-10">
               <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-2xl">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[rgba(255,255,255,0.7)]">
@@ -249,7 +180,7 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                <ButtonLink href={`mailto:${siteConfig.contact.email}?subject=${siteConfig.contact.subject}`}>
+                <ButtonLink href={contactHref} variant="light">
                   Start a Conversation
                 </ButtonLink>
               </div>

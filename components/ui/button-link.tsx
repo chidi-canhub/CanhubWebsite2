@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "light";
 
 type ButtonLinkProps = {
   href: string;
@@ -10,13 +10,15 @@ type ButtonLinkProps = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brand-accent)]";
+  "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-[var(--brand-accent)] text-white shadow-[0_12px_30px_rgba(43,93,80,0.18)] hover:-translate-y-0.5 hover:bg-[var(--brand-accent-deep)]",
   secondary:
     "border border-[var(--brand-border)] bg-white text-[var(--brand-ink)] hover:-translate-y-0.5 hover:border-[var(--brand-accent)] hover:text-[var(--brand-accent)]",
+  light:
+    "bg-white text-[var(--brand-ink)] hover:-translate-y-0.5 hover:bg-[var(--brand-accent-soft)]",
 };
 
 export function ButtonLink({
@@ -27,7 +29,7 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   const sharedClasses = `${baseClasses} ${variants[variant]} ${className}`.trim();
 
-  if (href.startsWith("#")) {
+  if (href.startsWith("#") || href.startsWith("mailto:")) {
     return (
       <a href={href} className={sharedClasses}>
         {children}

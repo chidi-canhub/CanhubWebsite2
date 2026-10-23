@@ -1,9 +1,11 @@
 import Link from "next/link";
 
-import { siteConfig } from "@/lib/site";
+import { getContactEmail, getNavItems, siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
   const currentYear = 2026;
+  const contactEmail = getContactEmail();
+  const navItems = getNavItems();
 
   return (
     <footer className="border-t border-[var(--brand-border)] bg-[var(--brand-surface)]">
@@ -27,7 +29,7 @@ export function SiteFooter() {
             Explore
           </p>
           <ul className="mt-4 space-y-3 text-sm text-[var(--brand-muted)]">
-            {siteConfig.nav.map((item) => (
+            {navItems.map((item) => (
               <li key={item.label}>
                 <Link href={item.href} className="transition-colors hover:text-[var(--brand-ink)]">
                   {item.label}
@@ -43,8 +45,8 @@ export function SiteFooter() {
           </p>
           <ul className="mt-4 space-y-3 text-sm text-[var(--brand-muted)]">
             <li>
-              <a href={`mailto:${siteConfig.contact.email}`} className="transition-colors hover:text-[var(--brand-ink)]">
-                {siteConfig.contact.email}
+              <a href={`mailto:${contactEmail}`} className="transition-colors hover:text-[var(--brand-ink)]">
+                {contactEmail}
               </a>
             </li>
             <li>

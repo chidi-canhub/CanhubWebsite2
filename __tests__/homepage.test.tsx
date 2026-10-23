@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 
 import HomePage from "@/app/page";
+import { siteConfig } from "@/lib/site";
 
 describe("homepage", () => {
   it("renders the core hero content and primary CTA", () => {
@@ -54,24 +55,89 @@ describe("homepage", () => {
   it("renders the key sections and navigation labels", () => {
     render(<HomePage />);
 
-    [
-      "Services",
-      "Industries",
-      "Our Work",
-      "About",
-      "Contact",
-      "Why Canhub",
-      "How We Work",
-    ].forEach((label) => {
-      expect(
-        screen.getAllByText(new RegExp(label, "i")).length,
-      ).toBeGreaterThan(0);
-    });
+    ["Services", "Industries", "About", "Contact", "Why Canhub", "How We Work"].forEach(
+      (label) => {
+        expect(screen.getAllByText(new RegExp(label, "i")).length).toBeGreaterThan(0);
+      },
+    );
 
-    expect(
-      screen.getByRole("link", {
-        name: /let's talk/i,
-      }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /let's talk/i })).toBeInTheDocument();
+  });
+
+  it("does not show draft, placeholder or illustrative metric content", () => {
+    const { container } = render(<HomePage />);
+    const text = container.textContent ?? "";
+
+    expect(text).not.toMatch(/draft|placeholder|to be confirmed|case study/i);
+    expect(text).not.toMatch(/96%|24\/7|100%/);
+    expect(screen.queryByText(/amazing grace|esh services/i)).not.toBeInTheDocument();
+  });
+
+  it("hides the Our Work section and navigation link while no project is approved", () => {
+    const { container } = render(<HomePage />);
+
+    expect(container.querySelector("#work")).toBeNull();
+    expect(screen.queryByRole("link", { name: /^our work$/i })).not.toBeInTheDocument();
+  });
+
+  it("links every in-page anchor to an existing section", () => {
+    const { container } = render(<HomePage />);
+    const anchors = Array.from(container.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+
+    expect(anchors.length).toBeGreaterThan(0);
+    anchors.forEach((anchor) => {
+      const id = anchor.getAttribute("href")!.slice(1);
+      expect(container.querySelector(`#${id}`)).not.toBeNull();
+    });
+  });
+
+  it("uses the confirmed contact email from central config for the CTA and footer", () => {
+    expect(siteConfig.contact.email).toBe("contact@canhubsoftware.com");
+
+    const { container } = render(<HomePage />);
+    const contactSection = container.querySelector<HTMLElement>("#contact")!;
+
+    expect(within(contactSection).getByRole("link", { name: /start a conversation/i })).toHaveAttribute(
+      "href",
+      "mailto:contact@canhubsoftware.com?subject=Project%20Enquiry",
+    );
+    expect(screen.getByRole("link", { name: "contact@canhubsoftware.com" })).toHaveAttribute(
+      "href",
+      "mailto:contact@canhubsoftware.com",
+    );
+  });
+
+  it("only links to the configured contact address and no provisional addresses", () => {
+    const { container } = render(<HomePage />);
+    const mailtoLinks = Array.from(container.querySelectorAll<HTMLAnchorElement>('a[href^="mailto:"]'));
+
+    expect(mailtoLinks.length).toBeGreaterThan(0);
+    mailtoLinks.forEach((link) => {
+      expect(link.getAttribute("href")).toMatch(/^mailto:contact@canhubsoftware\.com(\?|$)/);
+    });
+    expect(container.textContent).not.toMatch(/hello@canhub\.com/i);
+  });
+
+  it("opens, labels and closes the mobile navigation", () => {
+    render(<HomePage />);
+
+    const toggle = screen.getByRole("button", { name: /open navigation menu/i });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("navigation", { name: /mobile navigation/i })).not.toBeInTheDocument();
+
+    fireEvent.click(toggle);
+    expect(screen.getByRole("button", { name: /close navigation menu/i })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    const mobileNav = screen.getByRole("navigation", { name: /mobile navigation/i });
+    expect(within(mobileNav).getByRole("link", { name: "Industries" })).toHaveAttribute(
+      "href",
+      "#industries",
+    );
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("navigation", { name: /mobile navigation/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /open navigation menu/i })).toHaveFocus();
   });
 });

@@ -11,6 +11,7 @@
   --brand-accent-soft: #dfeef4;
   --brand-navy: #0b1728;
   --brand-navy-soft: #16314d;
+  --brand-focus-on-dark: #8fd0e0;
   --background: var(--brand-bg);
   --foreground: var(--brand-ink);
 }
@@ -32,6 +33,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: var(--brand-bg);
   color: var(--brand-ink);
   font-family: var(--font-geist-sans), Arial, sans-serif;
@@ -50,6 +52,14 @@ img {
 :focus-visible {
   outline: 2px solid var(--brand-accent);
   outline-offset: 3px;
+}
+
+.surface-dark :focus-visible {
+  outline-color: var(--brand-focus-on-dark);
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 ::selection {

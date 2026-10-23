@@ -1,24 +1,54 @@
+import { getPublishedProjects, projects, type Project } from "@/lib/projects";
+
+/**
+ * Single source of truth for the public business contact address.
+ * Footer, CTAs and any future contact form recipient must use these helpers
+ * rather than hard-coding the address.
+ */
+export function getContactEmail(): string {
+  return siteConfig.contact.email;
+}
+
+export function getContactHref(): string {
+  return `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
+    siteConfig.contact.subject,
+  )}`;
+}
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "#services" },
+  { label: "Industries", href: "#industries" },
+  { label: "Our Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+/**
+ * Navigation items whose destinations exist on the page. "Our Work" is only
+ * included when at least one approved project is available to render.
+ */
+export function getNavItems(list: readonly Project[] = projects) {
+  const hasPublishedWork = getPublishedProjects(list).length > 0;
+  return navItems.filter((item) => item.href !== "#work" || hasPublishedWork);
+}
+
 export const siteConfig = {
   name: "Canhub",
   companyName: "Canhub Software",
   tagline: "Software engineering and digital solutions",
+  contact: {
+    // Confirmed public address for Canhub Software Ltd. Also the intended
+    // recipient for future contact forms (delivery to be configured and tested
+    // separately).
+    email: "contact@canhubsoftware.com",
+    subject: "Project Enquiry",
+  },
   meta: {
     title: "Canhub Software | Software Engineering & Digital Solutions",
     description:
       "Canhub Software provides bespoke software development, Salesforce and CRM engineering, banking technology, integrations, and cloud and data solutions.",
   },
-  contact: {
-    email: "hello@canhub.com",
-    subject: "Project Enquiry",
-  },
-  nav: [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "#services" },
-    { label: "Industries", href: "#industries" },
-    { label: "Our Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
-  ],
   homepage: {
     eyebrow: "Software engineering consultancy",
     title: "Software engineered for what's next.",
@@ -120,19 +150,11 @@ export const siteConfig = {
           "Flexible technology foundations that help scaling businesses streamline operations and prepare for the next stage of growth.",
       },
     ],
-    work: [
-      {
-        title: "Amazing Grace Biomedical Laboratory",
-        description:
-          "Draft project summary to be confirmed. This placeholder content is included only to support the homepage structure until accurate case study information is approved.",
-        tag: "Draft case study",
-      },
-      {
-        title: "ESH Services",
-        description:
-          "Draft project summary to be confirmed. This placeholder content is included only to support the homepage structure until accurate case study information is approved.",
-        tag: "Draft case study",
-      },
+    architecture: [
+      { layer: "Experience", detail: "Web and application interfaces" },
+      { layer: "Integration", detail: "APIs and service connections" },
+      { layer: "Platform", detail: "CRM and enterprise systems" },
+      { layer: "Data & Cloud", detail: "Storage, pipelines and hosting" },
     ],
     process: [
       {
