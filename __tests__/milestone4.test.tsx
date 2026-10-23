@@ -31,11 +31,13 @@ describe("milestone 4 pages", () => {
     expect(screen.getByRole("link", { name: /banking & nCino solutions/i })).toBeInTheDocument();
   });
 
-  it("renders the work page safely when there are no published case studies", () => {
+  it("renders the work page with the approved public case studies", () => {
     render(<WorkPage />);
 
     expect(screen.getByRole("heading", { name: /our work/i })).toBeInTheDocument();
-    expect(getPublishedCaseStudies(caseStudies)).toEqual([]);
+    expect(getPublishedCaseStudies(caseStudies)).toHaveLength(2);
+    expect(screen.getAllByText(/amazing grace biomedical laboratory/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/esh services/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/discuss your requirements/i)).toBeInTheDocument();
   });
 

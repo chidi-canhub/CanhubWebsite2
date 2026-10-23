@@ -68,16 +68,16 @@ describe("homepage", () => {
     const { container } = render(<HomePage />);
     const text = container.textContent ?? "";
 
-    expect(text).not.toMatch(/draft|placeholder|to be confirmed|case study/i);
+    expect(text).not.toMatch(/draft|placeholder|to be confirmed/i);
     expect(text).not.toMatch(/96%|24\/7|100%/);
-    expect(screen.queryByText(/amazing grace|esh services/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText(/amazing grace biomedical laboratory|esh services/i).length).toBeGreaterThan(0);
   });
 
-  it("hides the Our Work section and navigation link while no project is approved", () => {
+  it("shows the Our Work section and navigation link when approved projects are published", () => {
     const { container } = render(<HomePage />);
 
-    expect(container.querySelector("#work")).toBeNull();
-    expect(screen.queryByRole("link", { name: /^our work$/i })).not.toBeInTheDocument();
+    expect(container.querySelector("#work")).not.toBeNull();
+    expect(screen.getAllByRole("link", { name: /^our work$/i }).length).toBeGreaterThan(0);
   });
 
   it("links every in-page anchor to an existing section", () => {

@@ -29,12 +29,19 @@ export const projects: Project[] = [
   {
     slug: "amazing-grace-biomedical-laboratory",
     title: "Amazing Grace Biomedical Laboratory",
-    status: "draft",
+    status: "approved",
+    summary:
+      "Biomedical laboratory website and patient information support for a healthcare service provider serving families and professionals in Abuja.",
+    sector: "Healthcare & Life Sciences",
+    capabilities: ["Web & Application Development", "Technical Consulting & Support"],
   },
   {
     slug: "esh-services",
     title: "ESH Services",
-    status: "draft",
+    status: "approved",
+    summary:
+      "Approved public portfolio entry for a practical digital engagement focused on clearer service presentation and accessible business information.",
+    capabilities: ["Web & Application Development", "Technical Consulting & Support"],
   },
 ];
 

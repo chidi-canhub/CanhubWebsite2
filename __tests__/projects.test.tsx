@@ -21,12 +21,14 @@ const draft: Project = {
 };
 
 describe("portfolio data", () => {
-  it("keeps the intended portfolio entries as unpublished drafts", () => {
+  it("keeps the approved portfolio entries visible to the public", () => {
     expect(projects.map((project) => project.title)).toEqual([
       "Amazing Grace Biomedical Laboratory",
       "ESH Services",
     ]);
-    expect(getPublishedProjects()).toEqual([]);
+    expect(getPublishedProjects()).toEqual(
+      projects.filter((project) => project.status === "approved"),
+    );
   });
 
   it("only publishes approved projects", () => {

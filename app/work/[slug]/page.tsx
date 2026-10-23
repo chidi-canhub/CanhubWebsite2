@@ -9,6 +9,15 @@ import { PageShell } from "@/components/ui/page-shell";
 import { getCaseStudyBySlug, getPublishedCaseStudies } from "@/lib/case-studies";
 import { getContactHref } from "@/lib/site";
 
+const serviceRouteMap: Record<string, string> = {
+  "Web & Application Development": "/services/web-application-development",
+  "Salesforce & CRM Engineering": "/services/salesforce-crm",
+  "Banking & nCino Solutions": "/services/banking-ncino",
+  "Enterprise Integrations & APIs": "/services/enterprise-integrations",
+  "Cloud & Data Engineering": "/services/cloud-data-engineering",
+  "Technical Consulting & Support": "/services/technical-consulting",
+};
+
 export async function generateStaticParams() {
   const studies = getPublishedCaseStudies();
 
@@ -53,6 +62,8 @@ export default async function CaseStudyDetailPage({
     notFound();
   }
 
+  const relatedServices = (study.services ?? []).filter((service) => serviceRouteMap[service]);
+
   return (
     <div className="flex min-h-screen flex-col bg-[var(--brand-bg)] text-[var(--brand-ink)]">
       <SiteHeader />
@@ -95,16 +106,62 @@ export default async function CaseStudyDetailPage({
         <section className="bg-[var(--brand-bg)]">
           <PageShell className="py-16 sm:py-20">
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
-                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Business context</h2>
-                <p className="mt-4 text-base leading-7 text-[var(--brand-muted)]">{study.businessContext ?? "Project context pending final approval."}</p>
-              </div>
+              {study.businessContext ? (
+                <div className="rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
+                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Project overview</h2>
+                  <p className="mt-4 text-base leading-7 text-[var(--brand-muted)]">{study.businessContext}</p>
+                </div>
+              ) : null}
 
-              <div className="rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
-                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Challenge</h2>
-                <p className="mt-4 text-base leading-7 text-[var(--brand-muted)]">{study.challenge ?? "Challenge details pending final approval."}</p>
-              </div>
+              {study.challenge ? (
+                <div className="rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
+                  <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Business requirement</h2>
+                  <p className="mt-4 text-base leading-7 text-[var(--brand-muted)]">{study.challenge}</p>
+                </div>
+              ) : null}
             </div>
+
+            {study.deliveredSolution ? (
+              <div className="mt-8 rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Solution delivered</h2>
+                <p className="mt-4 text-base leading-7 text-[var(--brand-muted)]">{study.deliveredSolution}</p>
+              </div>
+            ) : null}
+
+            {study.technologies && study.technologies.length > 0 ? (
+              <div className="mt-8 rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Technologies</h2>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {study.technologies.map((technology) => (
+                    <li
+                      key={technology}
+                      className="rounded-full bg-[var(--brand-accent-soft)] px-3 py-1 text-sm font-medium text-[var(--brand-accent-deep)]"
+                    >
+                      {technology}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {relatedServices.length > 0 ? (
+              <div className="mt-8 rounded-[1.5rem] border border-[var(--brand-border)] bg-[var(--brand-surface)] p-6 sm:p-8">
+                <h2 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--brand-ink)]">Related Canhub services</h2>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {relatedServices.map((serviceName) => (
+                    <li key={serviceName}>
+                      <Link
+                        href={serviceRouteMap[serviceName]}
+                        className="inline-flex items-center gap-2 text-base font-medium text-[var(--brand-accent)] transition-colors hover:text-[var(--brand-accent-deep)]"
+                      >
+                        {serviceName}
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </PageShell>
         </section>
       </main>

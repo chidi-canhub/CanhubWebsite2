@@ -28,7 +28,7 @@ The confirmed public contact address for Canhub Software Ltd (`contact@canhubsof
 
 ## Portfolio content
 
-Projects are defined in `lib/projects.ts`. Only entries with `status: "approved"` are rendered; drafts stay hidden, and the "Our Work" section and navigation link appear only when at least one approved project exists. Approve an entry only after its summary is accurate and the client has given permission to publish.
+Projects are defined in `lib/projects.ts`, and the approved public portfolio includes Amazing Grace Biomedical Laboratory and ESH Services. Only entries with `status: "approved"` are rendered; drafts stay hidden, and the "Our Work" section and navigation link appear only when at least one approved project exists. Approve an entry only after its summary is accurate and the client has given permission to publish.
 
 ## Project notes
 

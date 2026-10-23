@@ -13,7 +13,7 @@ Status: Complete
 Status: Complete, pending a live visual review in a real browser (see limitations).
 
 - Removed visible draft labels, placeholder descriptions and internal development wording from the public homepage.
-- Portfolio data moved to `lib/projects.ts` with a `draft` / `approved` status. Only approved entries render; the "Our Work" section and nav link are hidden while none are approved. Amazing Grace Biomedical Laboratory and ESH Services remain as drafts.
+- Portfolio data moved to `lib/projects.ts` with a `draft` / `approved` status. Only approved entries render; the "Our Work" section and nav link are hidden while none are approved. Amazing Grace Biomedical Laboratory and ESH Services are now approved and published in the public portfolio.
 - Replaced the hero metrics (CRM 96%, Integrations 24/7, Ops visibility 100%) with a non-numerical architecture diagram (Experience, Integration, Platform, Data & Cloud). Removed the "Live" label.
 - Business email is a single setting, `siteConfig.contact.email` in `lib/site.ts`, set to the confirmed address `contact@canhubsoftware.com`. The footer and contact CTA read it via `getContactEmail()` / `getContactHref()`. No provisional addresses remain. It is the intended recipient for future contact forms; delivery is to be configured and tested separately.
 - Navigation: every anchor resolves to an existing section (covered by a test). "Our Work" is derived from published projects.

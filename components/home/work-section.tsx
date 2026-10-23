@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { PageShell } from "@/components/ui/page-shell";
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { ApprovedProject } from "@/lib/projects";
@@ -43,6 +45,13 @@ export function WorkSection({ projects }: WorkSectionProps) {
                   ))}
                 </ul>
               ) : null}
+              <Link
+                href={`/work/${project.slug}`}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-accent)] transition-colors hover:text-[var(--brand-accent-deep)]"
+              >
+                View case study
+                <span aria-hidden="true">→</span>
+              </Link>
             </article>
           ))}
         </div>

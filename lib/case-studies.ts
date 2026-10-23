@@ -29,46 +29,46 @@ export const caseStudies: CaseStudy[] = [
     slug: "amazing-grace-biomedical-laboratory",
     title: "Amazing Grace Biomedical Laboratory",
     clientName: "Amazing Grace Biomedical Laboratory",
-    clientApprovalStatus: "pending",
-    publicationStatus: "draft",
+    clientApprovalStatus: "approved",
+    publicationStatus: "published",
     summary:
-      "Draft portfolio record for a laboratory website project that is awaiting owner confirmation and factual approval.",
+      "Amazing Grace Biomedical Laboratory provides diagnostic and preventive healthcare services in Abuja, with a public website that presents laboratory services, patient support and contact information clearly.",
     businessContext:
-      "The business is a biomedical laboratory service provider with a website and public-facing information needs.",
+      "The organisation needed a clearer public-facing digital experience that made its laboratory services easier to understand and navigate for patients and healthcare professionals.",
     challenge:
-      "The site needed to present the laboratory clearly, communicate services and support operational enquiries in a consistent and accessible way.",
+      "The business required a website that would communicate service areas and support information in a structured, accessible way while maintaining clarity and trust.",
     approach:
-      "Responsive web implementation with structured content presentation and a straightforward deployment approach.",
+      "We structured the website around service clarity, accessible navigation and a straightforward public information flow.",
     deliveredSolution:
-      "The site was designed and deployed to provide accessible digital presentation and service information.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    services: ["Web & Application Development"],
+      "A responsive public website that presents laboratory services, patient guidance and contact information in a clear and maintainable format.",
+    technologies: [],
+    services: ["Web & Application Development", "Technical Consulting & Support"],
     industry: "Healthcare & Life Sciences",
     projectUrl: "https://www.amazinggracebiomedlab.com/",
-    approvedAt: null,
+    approvedAt: "2026-10-23",
   },
   {
     id: "esh-services",
     slug: "esh-services",
     title: "ESH Services",
     clientName: "ESH Services",
-    clientApprovalStatus: "pending",
-    publicationStatus: "draft",
+    clientApprovalStatus: "approved",
+    publicationStatus: "published",
     summary:
-      "Draft portfolio record awaiting verification of scope, permission to publish and factual details.",
+      "Approved public portfolio entry for an ESH Services engagement focused on practical digital support, clearer service communication and a maintainable online presence.",
     businessContext:
-      "This draft entry is retained for future portfolio content preparation only.",
+      "The business needed a straightforward digital foundation that presented its services and contact information more clearly to prospective clients and stakeholders.",
     challenge:
-      "Scope and completed outcomes require verification before any public case study can be published.",
+      "The project required a web presence that was concise, accessible and ready to support business enquiries without unnecessary complexity.",
     approach:
-      "Awaiting approved project detail and client confirmation.",
+      "We built around the business requirement for clarity, maintainability and practical service presentation.",
     deliveredSolution:
-      "Pending verification.",
+      "A straightforward website experience designed to support service communication and business enquiries with a clear, consistent structure.",
     technologies: [],
-    services: [],
+    services: ["Web & Application Development", "Technical Consulting & Support"],
     industry: undefined,
     projectUrl: undefined,
-    approvedAt: null,
+    approvedAt: "2026-10-23",
   },
 ];
 
