@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { ButtonLink } from "@/components/ui/button-link";
 import { PageShell } from "@/components/ui/page-shell";
 import { getCaseStudyBySlug, getPublishedCaseStudies } from "@/lib/case-studies";
-import { getContactHref } from "@/lib/site";
+import { getContactPageHref } from "@/lib/site";
 
 const serviceRouteMap: Record<string, string> = {
   "Web & Application Development": "/services/web-application-development",
@@ -55,7 +55,7 @@ export default async function CaseStudyDetailPage({
   params: Promise<{ slug: string }> | { slug: string };
 }) {
   const resolvedParams = params instanceof Promise ? await params : params;
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
   const study = getCaseStudyBySlug(resolvedParams.slug);
 
   if (!study || getPublishedCaseStudies().every((entry) => entry.slug !== study.slug)) {

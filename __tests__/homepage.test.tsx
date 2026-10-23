@@ -80,27 +80,25 @@ describe("homepage", () => {
     expect(screen.getAllByRole("link", { name: /^our work$/i }).length).toBeGreaterThan(0);
   });
 
-  it("links every in-page anchor to an existing section", () => {
-    const { container } = render(<HomePage />);
-    const anchors = Array.from(container.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'));
+  it("routes key actions to the dedicated contact page instead of stale in-page anchors", () => {
+    render(<HomePage />);
 
-    expect(anchors.length).toBeGreaterThan(0);
-    anchors.forEach((anchor) => {
-      const id = anchor.getAttribute("href")!.slice(1);
-      expect(container.querySelector(`#${id}`)).not.toBeNull();
-    });
+    expect(screen.getByRole("link", { name: /discuss your project/i })).toHaveAttribute("href", "/contact");
+    expect(screen.getAllByRole("link", { name: /start a conversation/i })[0]).toHaveAttribute("href", "/contact");
+    expect(screen.getByRole("link", { name: /let's talk/i })).toHaveAttribute("href", "/contact");
+    expect(screen.getAllByRole("link", { name: /contact/i }).length).toBeGreaterThan(0);
   });
 
   it("uses the confirmed contact email from central config for the CTA and footer", () => {
     expect(siteConfig.contact.email).toBe("contact@canhubsoftware.com");
 
     const { container } = render(<HomePage />);
-    const contactSection = container.querySelector<HTMLElement>("#contact")!;
 
-    expect(within(contactSection).getByRole("link", { name: /start a conversation/i })).toHaveAttribute(
-      "href",
-      "mailto:contact@canhubsoftware.com?subject=Project%20Enquiry",
+    const contactRouteLinks = Array.from(
+      container.querySelectorAll<HTMLAnchorElement>('a[href="/contact"], a[href="mailto:contact@canhubsoftware.com"]'),
     );
+
+    expect(contactRouteLinks.length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: "contact@canhubsoftware.com" })).toHaveAttribute(
       "href",
       "mailto:contact@canhubsoftware.com",
@@ -133,7 +131,7 @@ describe("homepage", () => {
     const mobileNav = screen.getByRole("navigation", { name: /mobile navigation/i });
     expect(within(mobileNav).getByRole("link", { name: "Industries" })).toHaveAttribute(
       "href",
-      "#industries",
+      "/industries",
     );
 
     fireEvent.keyDown(document, { key: "Escape" });

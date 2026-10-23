@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { getNavItems, siteConfig } from "@/lib/site";
+import { getContactPageHref, getNavItems, siteConfig } from "@/lib/site";
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,12 +52,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-3">
-          <a
-            href="#contact"
+          <Link
+            href={getContactPageHref()}
             className="hidden rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10 sm:inline-flex"
           >
             Let&apos;s Talk
-          </a>
+          </Link>
           <button
             ref={menuButtonRef}
             type="button"
@@ -89,13 +89,13 @@ export function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <a
-              href="#contact"
+            <Link
+              href={getContactPageHref()}
               onClick={closeMenu}
               className="mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-white px-4 text-base font-semibold text-[var(--brand-ink)] transition-colors hover:bg-[var(--brand-accent-soft)] sm:hidden"
             >
               Let&apos;s Talk
-            </a>
+            </Link>
           </nav>
         </div>
       ) : null}

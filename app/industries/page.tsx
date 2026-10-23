@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { PageShell } from "@/components/ui/page-shell";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { industries } from "@/lib/industries";
-import { getContactHref } from "@/lib/site";
+import { getContactPageHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Industries | Canhub Software",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function IndustriesOverviewPage() {
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--brand-bg)] text-[var(--brand-ink)]">

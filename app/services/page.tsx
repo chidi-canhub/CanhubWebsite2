@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { ButtonLink } from "@/components/ui/button-link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { getContactHref } from "@/lib/site";
+import { getContactPageHref } from "@/lib/site";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesOverviewPage() {
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--brand-bg)] text-[var(--brand-ink)]">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getContactEmail, getNavItems, siteConfig } from "@/lib/site";
+import { getContactEmail, getContactPageHref, getNavItems, siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
   const currentYear = 2026;
@@ -50,9 +50,9 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href="#contact" className="transition-colors hover:text-[var(--brand-ink)]">
+              <Link href={getContactPageHref()} className="transition-colors hover:text-[var(--brand-ink)]">
                 Start a conversation
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

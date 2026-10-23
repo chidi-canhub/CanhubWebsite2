@@ -6,7 +6,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { PageShell } from "@/components/ui/page-shell";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getPublishedCaseStudies } from "@/lib/case-studies";
-import { getContactHref } from "@/lib/site";
+import { getContactPageHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Our Work | Canhub Software",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
   const publishedCaseStudies = getPublishedCaseStudies();
 
   return (

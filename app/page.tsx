@@ -6,11 +6,11 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { PageShell } from "@/components/ui/page-shell";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getPublishedProjects } from "@/lib/projects";
-import { getContactHref, siteConfig } from "@/lib/site";
+import { getContactPageHref, siteConfig } from "@/lib/site";
 
 export default function HomePage() {
   const publishedProjects = getPublishedProjects();
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
 
   return (
     <div className="flex min-h-screen flex-col bg-[var(--brand-bg)] text-[var(--brand-ink)]">
@@ -164,7 +164,7 @@ export default function HomePage() {
           </PageShell>
         </section>
 
-        <section id="contact" className="bg-[var(--brand-bg)]">
+        <section className="bg-[var(--brand-bg)]">
           <PageShell className="py-16 sm:py-20">
             <div className="surface-dark rounded-[2rem] border border-[var(--brand-border)] bg-[var(--brand-ink)] px-6 py-10 text-white shadow-[0_30px_60px_rgba(15,23,42,0.12)] sm:px-8 lg:px-10">
               <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

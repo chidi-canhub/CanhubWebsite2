@@ -2,11 +2,11 @@ import Link from "next/link";
 
 import { PageShell } from "@/components/ui/page-shell";
 import { ButtonLink } from "@/components/ui/button-link";
-import { getContactHref } from "@/lib/site";
+import { getContactPageHref } from "@/lib/site";
 import { serviceMap, type Service } from "@/lib/services";
 
 export function ServiceDetailLayout({ service }: { service: Service }) {
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
   const relatedServices = service.related
     .map((slug) => serviceMap[slug])
     .filter(Boolean) as Service[];

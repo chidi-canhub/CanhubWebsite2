@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { ButtonLink } from "@/components/ui/button-link";
 import { PageShell } from "@/components/ui/page-shell";
 import { getIndustryBySlug, industries } from "@/lib/industries";
-import { getContactHref } from "@/lib/site";
+import { getContactPageHref } from "@/lib/site";
 
 export async function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }));
@@ -40,7 +40,7 @@ export default function IndustryDetailPage({
   params: { slug: string };
 }) {
   const industry = getIndustryBySlug(params.slug);
-  const contactHref = getContactHref();
+  const contactHref = getContactPageHref();
 
   if (!industry) {
     notFound();

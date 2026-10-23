@@ -9,6 +9,10 @@ export function getContactEmail(): string {
   return siteConfig.contact.email;
 }
 
+export function getContactPageHref(): string {
+  return siteConfig.contact.pageHref;
+}
+
 export function getContactHref(): string {
   return `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
     siteConfig.contact.subject,
@@ -18,10 +22,10 @@ export function getContactHref(): string {
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Industries", href: "#industries" },
-  { label: "Our Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Industries", href: "/industries" },
+  { label: "Our Work", href: "/work" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 /**
@@ -30,7 +34,7 @@ const navItems = [
  */
 export function getNavItems(list: readonly Project[] = projects) {
   const hasPublishedWork = getPublishedProjects(list).length > 0;
-  return navItems.filter((item) => item.href !== "#work" || hasPublishedWork);
+  return navItems.filter((item) => item.href !== "/work" || hasPublishedWork);
 }
 
 export const siteConfig = {
@@ -39,9 +43,10 @@ export const siteConfig = {
   tagline: "Software engineering and digital solutions",
   contact: {
     // Confirmed public address for Canhub Software Ltd. Also the intended
-    // recipient for future contact forms (delivery to be configured and tested
-    // separately).
+    // recipient for future contact forms. Delivery remains separately configured
+    // and must be approved before being considered production-ready.
     email: "contact@canhubsoftware.com",
+    pageHref: "/contact",
     subject: "Project Enquiry",
   },
   meta: {
@@ -56,7 +61,7 @@ export const siteConfig = {
       "Canhub designs, builds and integrates digital solutions that help businesses solve complex challenges, streamline operations and grow with confidence.",
     primaryCta: {
       label: "Discuss Your Project",
-      href: "#contact",
+      href: "/contact",
     },
     secondaryCta: {
       label: "Explore Our Services",
